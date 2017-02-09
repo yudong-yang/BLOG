@@ -21,7 +21,7 @@ public class PostController {
     private CommentJpaService commentService;
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String showCreatePage() {
-        return "create";
+        return "blog/create";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -31,12 +31,18 @@ public class PostController {
     	Post post = postService.getByid(id);
     	 model.addAttribute("post", post);
     	 model.addAttribute("comments", commentService.findbyPostId(id));
-    	return "post";
+    	return "blog/post";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveCreate(@ModelAttribute("post") Post post) {
     	postService.save(post);
         return "redirect:/posts/"+post.getId();
+    }
+    
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String index(Model model) {
+        model.addAttribute("posts", postService.findAllPost());
+        return "blog/index";
     }
 }

@@ -17,7 +17,8 @@ public class LoginController {
     public static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @RequestMapping(method = RequestMethod.GET)
-    public String loginPage(@RequestParam("next") Optional<String> next) {
+    public String loginPage(@RequestParam("next") Optional<String> next,Model model) {
+    	model.addAttribute("next",next.orElse("/"));
         return "login";
     }
 

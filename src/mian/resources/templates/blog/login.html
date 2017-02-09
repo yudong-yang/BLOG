@@ -12,9 +12,10 @@
   <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form method='post' enctype='application/x-www-form-urlencoded' action = '/login' >
+<form method='post' enctype='application/x-www-form-urlencoded' action = '/blog/login' >
   <input type="text" name='username'/>
   <input type="text" name='password'/>
+  <input type="hidden" name='next' th:values="${next}"/>
   <input type="submit"/>
 </form>
 </body>

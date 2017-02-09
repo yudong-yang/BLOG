@@ -27,4 +27,8 @@ public class PostJpaService {
 	public void save(Post post) {
 		postRepository.save(post);
 	}
+
+	public List<Post> findAllPost() {
+		return postRepository.findAll();
+	}
 }
