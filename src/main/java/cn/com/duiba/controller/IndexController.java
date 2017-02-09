@@ -14,7 +14,7 @@ import cn.com.duiba.repository.PostRepository;
 
 @Controller
 public class IndexController {
-    
+	/*   
     @Autowired
     private PostRepository postRepository;
 
@@ -32,20 +32,20 @@ public class IndexController {
         return "post2";
     }
     
-  /*  @RequestMapping(value = "/saves", method = RequestMethod.POST)
+    @RequestMapping(value = "/saves", method = RequestMethod.POST)
     @ResponseBody
     public String saves(@RequestParam("title") String title,@RequestParam("subtitle") String content) {
        System.out.println(title+"=="+content);
 
         return title+"=="+content;
-    }*/
+    }
     
     @RequestMapping(value = "/saves", method = RequestMethod.POST)
     @ResponseBody
     public String saves(Post2 post2) {
      
         return post2.getContent()+"=="+post2.getTitle();
-    }
+    }*/
     
 	}
 

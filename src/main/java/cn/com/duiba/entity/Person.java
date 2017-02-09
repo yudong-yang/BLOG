@@ -4,16 +4,16 @@ package cn.com.duiba.entity;
 import javax.persistence.*;
 
 @Entity
-public class Users {
+public class Person {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
 	private String password;
 	
-	public Users(){};
+	public Person(){};
 	
-	public Users(String name , String password){
+	public Person(String name , String password){
 		this.name = name;
 		this.password = password;
 	}

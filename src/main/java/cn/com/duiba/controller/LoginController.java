@@ -19,7 +19,7 @@ public class LoginController {
     @RequestMapping(method = RequestMethod.GET)
     public String loginPage(@RequestParam("next") Optional<String> next,Model model) {
     	model.addAttribute("next",next.orElse("/"));
-        return "login";
+        return "blog/login";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -34,6 +34,6 @@ public class LoginController {
             return "redirect:".concat(next.orElse("/"));
         }
         model.addAttribute("fail", true);
-        return "login";
+        return "blog/login";
     }
 }
