@@ -39,4 +39,12 @@ public class PersonJpaService {
 	public void deleteByid(int id) {
 		userRepository.delete(id);
 	}
+
+	public Person findById(int id) {
+		return userRepository.findOne(id);	
+	}
+
+	public void UpdatePerson(Person person) {
+		userRepository.save(person);
+	}
 }

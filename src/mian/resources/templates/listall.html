@@ -85,7 +85,7 @@ $(document).ready(function(){
       <td th:text="${user.getPassword()}">yes</td>
       <td >
       <a href="#" th:text="删除" class="del" th:id="${user.getId()}"></a>
-      ||<a href="#" th:href="@{'/users/update/'(curpage=${currentpage})}" th:text="编辑" ></a>
+      ||<a href="#" th:href="@{'/users/update'(personid=${user.getId()},page=${userLists.number})}" th:text="编辑" ></a>
       </td>
     </tr>
     <tr>

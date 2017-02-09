@@ -21,31 +21,28 @@
   <body>
   <div class="page-header">
     <h1>更新页面 </h1>
-    
-    <form action="#" th:action="@{/user/update}" th:object="${user}" th:method="post">
+    <form action="#" th:action="@{'/users/save/'+${page}}" th:object="${user}" th:method="post">
     <table class="imagetable" > 
     <tr>
     <td>学生ID</td>
     <td><input type="text" id="id"   width="100%"  th:field="*{id}" /></td>
     </tr>
-    
     <tr>
     <td>学生姓名</td>
     <td><input type="text" id="name"  width="100%"   th:field="*{name}" /></td>
     </tr>
-    
     <tr>
     <td>学生密码</td>
-    <td><input type="text" id="password" width="100%"  th:field="*{password}" /></td>
+    <td><input type="text" id="password" width="100%"  th:field="*{password}" />
+    <input type="hidden" id = "page" th:value="${page}"/></td>
     </tr>
     <tr>
+    
     <td colspan="2"> <input type = "submit" value="提交" onClick="delcfm()"/></td>
     </tr>
     </table>
-    <input type="hidden" id = "curpage" value="${curpage}"/>
     </form>
   </div>
-
   </body>
 
 </html>
