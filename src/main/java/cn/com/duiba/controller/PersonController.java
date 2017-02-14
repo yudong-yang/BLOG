@@ -1,6 +1,10 @@
 package cn.com.duiba.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -38,8 +42,12 @@ private PersonJpaService userJpaservice;
     public String DeleteByid(HttpServletRequest request){
     	String userid=request.getParameter("userid");
         System.out.println("删除指定元素");
-         userJpaservice.deleteByid(Integer.parseInt(userid));
-         return "删除成功";
+        try {
+        	userJpaservice.deleteByid(Integer.parseInt(userid));
+        	return "success";
+		} catch (Exception e) {
+			return "fail"+e;
+		}
     }
     @RequestMapping("/update")
     public String UpdatePerson(HttpServletRequest request, Model model){
@@ -52,9 +60,46 @@ private PersonJpaService userJpaservice;
     }
     
     @RequestMapping(value = "/save/{page}", method = RequestMethod.POST)
-    public String save(@PathVariable("page") int page,Person person, Model model) {
+    public String Save(@PathVariable("page") int page,Person person, Model model) {
     	model.addAttribute("user", person);
     	userJpaservice.UpdatePerson(person);
         return "redirect:/users/page?page="+page;
     }
+    
+    
+    @RequestMapping(value = "/bachsave/{num}", method = RequestMethod.GET)
+    @ResponseBody
+    public String BachSave(@PathVariable("num") int num) {
+    	List<Person> persons =new ArrayList<Person>();
+    	for (int i = 0; i < num; i++) {
+			Person p1 = new Person("张晓明","12457");
+			Person p2 = new Person("王晓丽","12457");
+			Person p3 = new Person("李三星","12457");
+			Person p4 = new Person("赵思成","12457");
+			Person p5 = new Person("李武阁","12457");
+			persons.add(p1);
+			persons.add(p2);
+			persons.add(p3);
+			persons.add(p4);
+			persons.add(p5);
+		}
+    	userJpaservice.BachSave(persons);
+		return "success";
+    	
+    }
+    
+    @RequestMapping(value = "/bachdel/{num}", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public String Bachdel(@PathVariable("num") int num) {
+    	List<Person> persons =new ArrayList<Person>();
+    	for (int i = 1100; i < 2100; i++) {
+    		persons.add(userJpaservice.getByid(i));
+		}
+    	System.out.println("长度==="+persons.size());
+    	userJpaservice.Bachdel(persons);
+		return "success";
+    	
+    }
+    
 }

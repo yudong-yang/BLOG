@@ -1,5 +1,6 @@
 package cn.com.duiba.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,17 @@ public class CommentJpaService {
 	
 	public List<Comment> findbyPostId(int id){
 		return commentRepository.findByPost_id(id);
+	}
+	
+	public Comment findbyId(long id){
+		return commentRepository.findOne(id);
+	}
+	
+	public Comment findbyDate(Date date){
+		return commentRepository.findByCreated(date);
+	}
+	
+	public void deleteByid(int id){
+		commentRepository.delete(findbyId(id));
 	}
 }

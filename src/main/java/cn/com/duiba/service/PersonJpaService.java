@@ -47,4 +47,12 @@ public class PersonJpaService {
 	public void UpdatePerson(Person person) {
 		userRepository.save(person);
 	}
+
+	public void BachSave(List<Person> persons) {
+		userRepository.save(persons);
+	}
+
+	public void Bachdel(List<Person> persons) {
+		userRepository.deleteInBatch(persons);
+	}
 }
